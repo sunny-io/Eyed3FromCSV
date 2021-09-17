@@ -15,7 +15,7 @@ genre set to 101 Speech.
 import eyed3
 import os
 import csv
-import numpy as np
+
 
 # ==============================================================================
 
@@ -104,15 +104,15 @@ class ID3TagAudio():
 
     # read existing meta data for files in list:
 
-    def get_audio_meta_list(self, filelist):
-        # generates list of meta data from list of file names
+    def get_audio_meta_list(self, filelist, column):
+        # generates list of meta data from list of lists with file names in column
 
         output_list = []
         try:
             for i in filelist:  # loop list
 
                 # append what you find
-                output_list.append(self.get_audio_meta(i))
+                output_list.append(self.get_audio_meta(i[column]))
         except Exception as e:
             print(type(e), e)
 

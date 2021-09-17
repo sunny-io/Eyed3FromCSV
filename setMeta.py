@@ -13,12 +13,18 @@
 """
 
 from Classs_ID3TagAudio import ID3TagAudio
-import numpy as np
+import os
 
-print(f"This script reads a 4-column Excel CSV export file and bulk sets the following ID3v2 tags:\n    - artist, title and track from the file, \n- album title from prompt.\nPromps for:\n- album name to be set with this import\n- name of the CSV file to be used\n- number of header lines\n- does your meta data file come with complete audio file names(Y) or do we need to add '.mp3' while processing(N)\nMAKE SURE CSV and Audiofiles both reside in cwd!")
+print(f"This script reads a 4-column Excel CSV export file [track_no][filename][artist][title]and bulk sets the following ID3v2 tags:\n    - artist, title and track from the file, \n- album title from prompt.\nPromps for:\n- album name to be set with this import\n- name of the CSV file to be used\n- number of header lines\n- does your meta data file come with complete audio file names(Y) or do we need to add '.mp3' while processing(N)\nMAKE SURE CSV and Audiofiles both reside in cwd!")
 
 
 # query album name, csv file name, and number of header lines
+
+wd = input('Enter the name of the folder for CSV and Audio files:')
+
+os.chdir(wd)
+print(os.getcwd())
+
 
 list_name = input('Enter the name of the compilation/album:')
 
@@ -40,12 +46,12 @@ album1 = ID3TagAudio([header, append_file_extension, list_name])
 album1.get_metafile(csv_name)
 
 # generate list for checking changed data
-file_list = np.array(album1.mydata)[:, 1]
+file_list = album1.mydata
 
-print(f"Aktuelle Metadaten: {album1.get_audio_meta_list(file_list)}")
+print(f"Currently set meta data: {album1.get_audio_meta_list(file_list,1)}")
 
 # set meta data
 album1.set_audio_meta_list(csv_name)
 
 
-print(f"Geänderte Metadaten: {album1.get_audio_meta_list(file_list)}")
+print(f"Meta data after seting: {album1.get_audio_meta_list(file_list,1)}")
