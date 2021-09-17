@@ -15,10 +15,11 @@ Configured for tagging Interview-MP3 from 4 column ExcelSheet CSV export
 
 ## Files:
 
-Classs_ID3TagAudio.py - this does the actual work
+- Classs_ID3TagAudio.py - this does the actual work
 
-setMeta.py - simple text prompt to read one csv and set meta data. Verbose
-loopLists - csvs and lists lists provided for looping through several csvs, edit lists in source. Prompt for csv location
+- setMeta.py - simple text prompt to read one csv and set meta data. Verbose.
+
+- loopLists - csvs and lists lists provided for looping through several csvs, edit lists in source. Prompt for csv location
 
 # Set up for flexible configuration
 
